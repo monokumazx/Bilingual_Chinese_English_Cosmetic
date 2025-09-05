@@ -44,6 +44,14 @@
             line-height: 100px;
             font-size: 14px;
         }
+        .speaker-icon {
+            cursor: pointer;
+            color: #635649;
+            transition: transform 0.1s ease-in-out;
+        }
+        .speaker-icon:hover {
+            transform: scale(1.1);
+        }
     </style>
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -223,24 +231,24 @@
                 category2: 'General',
                 icon: '⚪',
                 english: 'Powder Foundation',
-                chinese: '粉状粉底',
-                pinyin: 'fěn zhuàng fěndǐ',
+                chinese: '粉饼',
+                pinyin: 'fěn bǐng',
                 measureWord: '盒 (hé)',
-                sentence_en: 'A foundation in powder form that can be used for light coverage or to set liquid makeup.',
-                sentence_ch: '一种粉状形式的粉底，可用于轻薄遮盖或定妆。',
-                notes: ''
+                sentence_en: 'A compact powder foundation that provides light to full coverage and helps set liquid makeup.',
+                sentence_ch: '一种紧凑型粉底，可提供轻度到全方位的遮盖力，并有助于定妆。',
+                notes: '粉饼通常用于定妆或补妆，遮瑕力不如粉底液。'
             },
             {
                 category: 'Face',
                 category2: 'General',
                 icon: '🍰',
                 english: 'Face Powder / Pressed Powder',
-                chinese: '粉饼',
-                pinyin: 'fěn bǐng',
+                chinese: '蜜粉饼',
+                pinyin: 'mì fěn bǐng',
                 measureWord: '块 (kuài)',
                 sentence_en: 'A compact powder used for setting foundation and reducing shine, often carried for touch-ups.',
                 sentence_ch: '一种紧凑型粉末，用于定妆和减少油光，通常便于携带以便快速补妆。',
-                notes: '粉饼通常用于定妆或补妆，遮瑕力不如粉底液。'
+                notes: ''
             },
             {
                 category: 'Face',
@@ -414,13 +422,37 @@
                 category: 'Eyes',
                 category2: 'General',
                 icon: '💧',
-                english: 'Liquid Eyeliner',
-                chinese: '眼线液',
-                pinyin: 'yǎnxiàn yè',
-                measureWord: '瓶 (píng)',
-                sentence_en: 'An eyeliner in liquid form that creates a sharp, defined line on the eyelid.',
-                sentence_ch: '一种液态的眼线产品，可以在眼睑上画出清晰、分明的线条。',
+                english: 'Liquid Eyeliner Pen',
+                chinese: '眼线液笔',
+                pinyin: 'yǎnxiàn yè bǐ',
+                measureWord: '支 (zhī)',
+                sentence_en: 'An eyeliner in liquid form that creates a sharp, defined line. It can be difficult to control and is not ideal for beginners.',
+                sentence_ch: '一种液态的眼线产品，通常为笔状，用于画出清晰、分明的线条。对于新手来说不易操控，涂出来是液体。',
                 notes: ''
+            },
+             {
+                category: 'Eyes',
+                category2: 'General',
+                icon: '✏️',
+                english: 'Gel Eyeliner Pencil',
+                chinese: '眼线胶笔',
+                pinyin: 'yǎnxiàn jiāo bǐ',
+                measureWord: '支 (zhī)',
+                sentence_en: 'An eyeliner in pencil form with a creamy, gel-like texture that provides a dry, smooth line, similar to a crayon.',
+                sentence_ch: '一种笔状眼线产品，质地类似乳霜凝胶，涂出来是干的，类似于蜡笔的划线。',
+                notes: ''
+            },
+             {
+                category: 'Eyes',
+                category2: 'General',
+                icon: '🖊️',
+                english: 'Aegyo Sal Pen',
+                chinese: '卧蚕笔',
+                pinyin: 'wòcán bǐ',
+                measureWord: '支 (zhī)',
+                sentence_en: 'A pen used to create the illusion of "aegyo sal" (cute eye bags) under the eyes, making the eyes appear larger and more youthful.',
+                sentence_ch: '一种用于在眼睛下方制造“卧蚕”错觉的笔，使眼睛看起来更大、更年轻。',
+                notes: '“卧蚕”是眼下紧邻下睫毛的肌肉，笑起来会鼓起，被认为是可爱的象征。'
             },
             {
                 category: 'Lips',
@@ -509,6 +541,18 @@
             {
                 category: 'Tools',
                 category2: 'General',
+                icon: '🧽',
+                english: 'Powder Puff',
+                chinese: '粉扑',
+                pinyin: 'fěn pū',
+                measureWord: '个 (gè)',
+                sentence_en: 'A soft, often round sponge or fabric tool used to apply and blend face powder, often featuring a ribbon or strap for holding.',
+                sentence_ch: '一种柔软、通常是圆形的海绵或织物工具，用于涂抹和晕染散粉，通常带有用于握持的带子。',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                category2: 'General',
                 icon: '🌀',
                 english: 'Eyelash Curler',
                 chinese: '睫毛夹',
@@ -564,6 +608,18 @@
                 measureWord: '瓶 (píng)',
                 sentence_en: 'A product designed to remove blackheads and deep clean pores.',
                 sentence_ch: '一种用于去除黑头并深层清洁毛孔的产品。',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                category2: 'General',
+                icon: '✨',
+                english: 'Double Eyelid Tape',
+                chinese: '双眼皮贴',
+                pinyin: 'shuāng yǎn pí tiē',
+                measureWord: '副 (fù)',
+                sentence_en: 'A small adhesive strip used to create a crease in the eyelid, giving the appearance of a double eyelid.',
+                sentence_ch: '一种小小的胶带，用于在眼皮上制造褶皱，从而形成双眼皮的效果。',
                 notes: ''
             },
             {
@@ -685,6 +741,17 @@
                 measureWord: '瓶 (píng)',
                 sentence_en: 'A liquid cosmetic product with a pleasant smell, applied to the body.',
                 sentence_ch: '一种具有宜人香味、涂抹在身上的液态化妆品。',
+                notes: ''
+            },
+             {
+                category: 'Skin Care',
+                icon: '💋',
+                english: 'Lip Mask',
+                chinese: '唇膜',
+                pinyin: 'chún mó',
+                measureWord: '片 (piàn)',
+                sentence_en: 'A concentrated treatment for the lips to deeply hydrate and repair dryness, often used overnight.',
+                sentence_ch: '一种用于唇部的高度浓缩护理产品，可以深层滋润和修复干燥，常在夜间使用。',
                 notes: ''
             },
             {
@@ -883,6 +950,23 @@
         ];
         
         let currentCategory = 'General';
+        let currentUtterance = null;
+        const synth = window.speechSynthesis;
+
+        function speakText(text, lang) {
+            // Stop any current speech to prevent overlap
+            if (synth.speaking) {
+                synth.cancel();
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            
+            // This is a workaround for some browsers that may not have specific voices
+            utterance.voice = synth.getVoices().find(voice => voice.lang.startsWith(lang));
+            
+            synth.speak(utterance);
+        }
 
         function renderGlossary(filter = '', category = currentCategory) {
             glossaryGrid.innerHTML = '';
@@ -921,17 +1005,17 @@
                 card.innerHTML = `
                     ${categoryTagHtml}
                     <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-bold text-[#635649]">${item.english}</h3>
+                        <h3 class="text-xl font-bold text-[#635649]">${item.english} <span class="speaker-icon" data-text="${item.english}" data-lang="en-US">🔊</span></h3>
                         <span class="text-3xl">${item.icon}</span>
                     </div>
                     <div>
-                        <p class="text-2xl font-semibold text-gray-700">${item.chinese}</p>
+                        <p class="text-2xl font-semibold text-gray-700">${item.chinese} <span class="speaker-icon" data-text="${item.chinese}" data-lang="zh-CN">🔊</span></p>
                         <p class="text-lg text-[#A39B8B]">${item.pinyin}</p>
                         ${item.measureWord ? `<p class="text-sm text-gray-500">Measure Word: <span class="text-[#635649] font-medium">${item.measureWord}</span></p>` : ''}
                     </div>
                     <div class="mt-2 pt-3 border-t border-gray-100 space-y-2 text-sm">
-                        <p class="text-gray-600">${item.sentence_en}</p>
-                        <p class="text-gray-600">${item.sentence_ch}</p>
+                        <p class="text-gray-600">${item.sentence_en} <span class="speaker-icon" data-text="${item.sentence_en}" data-lang="en-US">🔊</span></p>
+                        <p class="text-gray-600">${item.sentence_ch} <span class="speaker-icon" data-text="${item.sentence_ch}" data-lang="zh-CN">🔊</span></p>
                     </div>
                     ${notesHtml}
                 `;
@@ -978,6 +1062,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderCategoryTabs();
             renderGlossary();
+        });
+
+        // Add a single, delegated event listener to the grid to handle all speaker clicks
+        glossaryGrid.addEventListener('click', (event) => {
+            const speakerIcon = event.target.closest('.speaker-icon');
+            if (speakerIcon) {
+                const text = speakerIcon.dataset.text;
+                const lang = speakerIcon.dataset.lang;
+                speakText(text, lang);
+            }
         });
 
     </script>
