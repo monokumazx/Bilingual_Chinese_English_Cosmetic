@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Makeup Glossary | 美妆术语</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Soft Glam -->
+    <!-- Application Structure Plan: The application is structured as a single-page interactive glossary with category-based navigation (tabs for Facial Features, Face, Eyes, Lips, Tools, Skin) and a live search filter. This design was chosen to organize a potentially large vocabulary into manageable, thematic sections, preventing user overload. The primary user flow is selection- and search-driven filtering, allowing for both browsing by category and targeted lookup of specific terms. This is more intuitive for a learning tool than a simple linear list. -->
+    <!-- Visualization & Content Choices: The core content is a bilingual vocabulary list. Goal: Organize & Inform. Method: Each term is presented in a self-contained 'card' (HTML/Tailwind) displaying the term in English, Chinese (Hanzi), and Pinyin, along with parallel example sentences for context and a corresponding image for visual aid. Interaction: The primary interactions are category filtering via tabs and real-time text search, both powered by vanilla JavaScript. Justification: This card-based, filterable list is the most direct and effective way to present and explore glossary data without unnecessary complexity. No charts are needed as there is no quantitative data to visualize. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FEFBF6;
+            color: #4A4A4A;
+        }
+        .active-tab {
+            background-color: #EADBC8;
+            color: #635649;
+            font-weight: 600;
+        }
+        .inactive-tab {
+            background-color: #F8F4EC;
+            color: #A39B8B;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #EADBC8;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .search-bar:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #EADBC8;
+        }
+        .image-placeholder {
+            background-color: #F8F4EC;
+            color: #635649;
+            text-align: center;
+            line-height: 100px;
+            font-size: 14px;
+        }
+    </style>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#635649]">Interactive Makeup Glossary</h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-[#A39B8B] mt-1">美妆术语 (Měizhuāng shùyǔ)</h2>
+            <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                Welcome to your guide for makeup terms in English and Chinese. Use the categories or the search bar below to explore different products and tools. This page will help you learn the essential vocabulary for your beauty routine.
+            </p>
+        </header>
+
+        <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8" id="category-tabs">
+        </nav>
+
+        <div class="mb-8">
+            <input type="text" id="search-bar" placeholder="🔍 Search by English, Pinyin, or Chinese..." class="search-bar w-full p-3 rounded-lg border-2 border-[#EADBC8] bg-white transition focus:border-[#DAC0A3]">
+        </div>
+
+        <main id="glossary-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </main>
+    </div>
+
+    <script>
+        const vocabulary = [
+            {
+                category: 'General',
+                icon: '💄',
+                english: 'Makeup',
+                chinese: '化妆',
+                pinyin: 'huà zhuāng',
+                measureWord: '(No common measure word)',
+                sentence_en: 'She enjoys doing her makeup every morning.',
+                sentence_ch: '她喜欢每天早上化妆。',
+                imageUrl: 'images/makeup/makeup.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '😊',
+                english: 'Face',
+                chinese: '脸',
+                pinyin: 'liǎn',
+                measureWord: '(No common measure word)',
+                sentence_en: 'She has a beautiful oval face.',
+                sentence_ch: '她有一张美丽的瓜子脸。',
+                imageUrl: 'images/makeup/face.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '🤔',
+                english: 'Forehead',
+                chinese: '额头',
+                pinyin: 'é’tóu',
+                measureWord: '(No common measure word)',
+                sentence_en: 'He has a broad forehead.',
+                sentence_ch: '他额头很宽。',
+                imageUrl: 'images/makeup/forehead.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '👀',
+                english: 'Eyebrows',
+                chinese: '眉毛',
+                pinyin: 'méimáo',
+                measureWord: '根 (gēn) for a single hair',
+                sentence_en: 'She has perfectly shaped eyebrows.',
+                sentence_ch: '她的眉毛形状很完美。',
+                imageUrl: 'images/makeup/eyebrows.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '👁️',
+                english: 'Eye',
+                chinese: '眼睛',
+                pinyin: 'yǎnjīng',
+                measureWord: '双 (shuāng)',
+                sentence_en: 'He has big, brown eyes.',
+                sentence_ch: '他有一双大大的棕色眼睛。',
+                imageUrl: 'images/makeup/eye.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '〰️',
+                english: 'Eyelashes',
+                chinese: '睫毛',
+                pinyin: 'jiémáo',
+                measureWord: '根 (gēn)',
+                sentence_en: 'Her long eyelashes framed her eyes.',
+                sentence_ch: '她长长的睫毛衬托着她的眼睛。',
+                imageUrl: 'images/makeup/eyelashes.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '👃',
+                english: 'Nose',
+                chinese: '鼻子',
+                pinyin: 'bízi',
+                measureWord: '个 (gè)',
+                sentence_en: 'He has a straight nose.',
+                sentence_ch: '他有一个笔直的鼻子。',
+                imageUrl: 'images/makeup/nose.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '😊',
+                english: 'Cheek',
+                chinese: '脸颊',
+                pinyin: 'liǎnjiá',
+                measureWord: '个 (gè)',
+                sentence_en: 'She has rosy cheeks.',
+                sentence_ch: '她的脸颊红扑扑的。',
+                imageUrl: 'images/makeup/cheek.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '💋',
+                english: 'Lips',
+                chinese: '唇',
+                pinyin: 'chún',
+                measureWord: '(No common measure word)',
+                sentence_en: 'She has full lips.',
+                sentence_ch: '她的嘴唇很丰满。',
+                imageUrl: 'images/makeup/lips.png',
+                notes: ''
+            },
+            {
+                category: 'Facial Features',
+                icon: '🤏',
+                english: 'Chin',
+                chinese: '下巴',
+                pinyin: 'xiàba',
+                measureWord: '个 (gè)',
+                sentence_en: 'He has a strong jaw and a defined chin.',
+                sentence_ch: '他下颚线很硬朗，下巴轮廓分明。',
+                imageUrl: 'images/makeup/chin.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '💧',
+                english: 'Primer',
+                chinese: '妆前乳',
+                pinyin: 'zhuāngqián rǔ',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'A good primer creates a smooth canvas for makeup.',
+                sentence_ch: '好的妆前乳为化妆打造光滑的画布。',
+                imageUrl: 'images/makeup/primer.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '🧴',
+                english: 'Liquid Foundation',
+                chinese: '粉底液',
+                pinyin: 'fěndǐ yè',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'She uses liquid foundation for light coverage.',
+                sentence_ch: '她使用粉底液来达到轻薄的遮盖效果。',
+                imageUrl: 'images/makeup/liquid_foundation.png',
+                notes: '和粉饼、BB霜不同，粉底液是液体质地，通常遮瑕力更好，是底妆的主力产品。'
+            },
+            {
+                category: 'Face',
+                icon: '💎',
+                english: 'Mineral Foundation',
+                chinese: '矿物粉底',
+                pinyin: 'kuàngwù fěndǐ',
+                measureWord: '盒 (hé)',
+                sentence_en: 'Mineral foundation is good for sensitive skin.',
+                sentence_ch: '矿物粉底对敏感性皮肤很好。',
+                imageUrl: 'images/makeup/mineral_foundation.png',
+                notes: '矿物粉底通常不含化学添加剂，对皮肤负担较小。'
+            },
+            {
+                category: 'Face',
+                icon: '⚪',
+                english: 'Powder Foundation',
+                chinese: '粉状粉底',
+                pinyin: 'fěn zhuàng fěndǐ',
+                measureWord: '盒 (hé)',
+                sentence_en: 'Powder foundation is ideal for oily skin.',
+                sentence_ch: '粉状粉底非常适合油性皮肤。',
+                imageUrl: 'images/makeup/powder_foundation.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '🍰',
+                english: 'Face Powder / Pressed Powder',
+                chinese: '粉饼',
+                pinyin: 'fěn bǐng',
+                measureWord: '块 (kuài)',
+                sentence_en: 'She carries pressed powder for quick touch-ups.',
+                sentence_ch: '她带着粉饼，以便快速补妆。',
+                imageUrl: 'images/makeup/face_powder_pressed_powder.png',
+                notes: '粉饼通常用于定妆或补妆，遮瑕力不如粉底液。'
+            },
+            {
+                category: 'Face',
+                icon: '💨',
+                english: 'Loose Powder',
+                chinese: '散粉',
+                pinyin: 'sǎn fěn',
+                measureWord: '盒 (hé)',
+                sentence_en: 'Loose powder helps set the makeup.',
+                sentence_ch: '散粉有助于定妆。',
+                imageUrl: 'images/makeup/loose_powder.png',
+                notes: '主要功能是吸附油脂、定妆，让妆容更持久。'
+            },
+            {
+                category: 'Face',
+                icon: '✨',
+                english: 'Concealer',
+                chinese: '遮瑕膏',
+                pinyin: 'zhēxiá gāo',
+                measureWord: '支 (zhī)',
+                sentence_en: 'Use concealer to cover blemishes.',
+                sentence_ch: '用遮瑕膏遮盖瑕疵。',
+                imageUrl: 'images/makeup/concealer.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '💡',
+                english: 'Highlighter',
+                chinese: '高光',
+                pinyin: 'gāoguāng',
+                measureWord: '盒 (hé)',
+                sentence_en: 'Apply highlighter to the high points of your face.',
+                sentence_ch: '将高光涂在脸部高光处。',
+                imageUrl: 'images/makeup/highlighter.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '☀️',
+                english: 'Bronzer',
+                chinese: '古铜粉',
+                pinyin: 'gǔtóng fěn',
+                measureWord: '盒 (hé)',
+                sentence_en: 'He used bronzer to get a sunkissed look.',
+                sentence_ch: '他用古铜粉来打造阳光亲吻过的妆容。',
+                imageUrl: 'images/makeup/bronzer.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '🔪',
+                english: 'Contour',
+                chinese: '修容',
+                pinyin: 'xiū róng',
+                measureWord: '盒 (hé)',
+                sentence_en: 'She used contour to define her cheekbones.',
+                sentence_ch: '她用修容来修饰她的颧骨。',
+                imageUrl: 'images/makeup/contour.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '🌸',
+                english: 'Blush',
+                chinese: '腮红',
+                pinyin: 'sāihóng',
+                measureWord: '块 (kuài)',
+                sentence_en: 'A little blush adds a healthy glow.',
+                sentence_ch: '一点腮红增添健康的光彩。',
+                imageUrl: 'images/makeup/blush.png',
+                notes: ''
+            },
+            {
+                category: 'Face',
+                icon: '🪞',
+                english: 'Foundation',
+                chinese: '粉底',
+                pinyin: 'fěn dǐ',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Choosing the right foundation is key to a good makeup look.',
+                sentence_ch: '选择正确的粉底是打造完美妆容的关键。',
+                imageUrl: 'images/makeup/foundation.png',
+                notes: '“粉底”是一个总称，包含了粉底液、粉饼等多种形式。'
+            },
+            {
+                category: 'Face',
+                icon: '🧴',
+                english: 'BB Cream',
+                chinese: 'BB霜',
+                pinyin: 'BB shuāng',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'BB cream offers lighter coverage and a more natural look than foundation.',
+                sentence_ch: 'BB霜比粉底液的遮瑕力更轻薄，妆感更自然。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=BB+Cream',
+                notes: 'BB霜是"Blemish Balm"的简称，最初用于修护皮肤。现在它是一种集保湿、防晒、底妆于一体的简化产品，但遮瑕力通常不如粉底液。'
+            },
+            {
+                category: 'Face',
+                icon: '🧴',
+                english: 'CC Cream',
+                chinese: 'CC霜',
+                pinyin: 'CC shuāng',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'CC cream is used for color correction and evening out skin tone.',
+                sentence_ch: 'CC霜用于校正肤色和均匀肤色。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=CC+Cream',
+                notes: 'CC霜是"Color Correcting"的简称，主要功能是均匀和提亮肤色，通常比BB霜更轻薄。'
+            },
+            {
+                category: 'Eyes',
+                icon: '🎨',
+                english: 'Eyeshadow',
+                chinese: '眼影',
+                pinyin: 'yǎnyǐng',
+                measureWord: '盘 (pán)',
+                sentence_en: 'She chose a shimmery eyeshadow for the party.',
+                sentence_ch: '她为派对选择了一款闪亮的眼影。',
+                imageUrl: 'images/makeup/eyeshadow.png',
+                notes: ''
+            },
+            {
+                category: 'Eyes',
+                icon: '✒️',
+                english: 'Eyeliner',
+                chinese: '眼线',
+                pinyin: 'yǎnxiàn',
+                measureWord: '支 (zhī)',
+                sentence_en: 'She likes to wear a simple eyeliner line.',
+                sentence_ch: '她喜欢画一条简单的眼线。',
+                imageUrl: 'images/makeup/eyeliner.png',
+                notes: ''
+            },
+            {
+                category: 'Eyes',
+                icon: '〰️',
+                english: 'Mascara',
+                chinese: '睫毛膏',
+                pinyin: 'jiémáo gāo',
+                measureWord: '支 (zhī)',
+                sentence_en: 'Waterproof mascara is great for rainy days.',
+                sentence_ch: '防水睫毛膏非常适合雨天。',
+                imageUrl: 'images/makeup/mascara.png',
+                notes: ''
+            },
+            {
+                category: 'Eyes',
+                icon: '✏️',
+                english: 'Eyebrow Pencil',
+                chinese: '眉笔',
+                pinyin: 'méibǐ',
+                measureWord: '支 (zhī)',
+                sentence_en: 'Use an eyebrow pencil to fill in sparse areas.',
+                sentence_ch: '用眉笔填补稀疏的区域。',
+                imageUrl: 'images/makeup/eyebrow_pencil.png',
+                notes: ''
+            },
+            {
+                category: 'Eyes',
+                icon: '👁️',
+                english: 'False Eyelashes',
+                chinese: '假睫毛',
+                pinyin: 'jiǎ jiémáo',
+                measureWord: '副 (fù)',
+                sentence_en: 'She carefully applied the false eyelashes.',
+                sentence_ch: '她小心翼翼地贴上了假睫毛。',
+                imageUrl: 'images/makeup/false_eyelashes.png',
+                notes: ''
+            },
+            {
+                category: 'Eyes',
+                icon: '💧',
+                english: 'Liquid Eyeliner',
+                chinese: '眼线液',
+                pinyin: 'yǎnxiàn yè',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'He drew a perfect wing with his liquid eyeliner.',
+                sentence_ch: '他用液体眼线笔画了一个完美的翅膀眼线。',
+                imageUrl: 'images/makeup/liquid_eyeliner.png',
+                notes: ''
+            },
+            {
+                category: 'Lips',
+                icon: '💄',
+                english: 'Lipstick',
+                chinese: '口红',
+                pinyin: 'kǒuhóng',
+                measureWord: '支 (zhī)',
+                sentence_en: 'She wore a bold red lipstick.',
+                sentence_ch: '她涂了大胆的红色口红。',
+                imageUrl: 'images/makeup/lipstick.png',
+                notes: ''
+            },
+            {
+                category: 'Lips',
+                icon: '💋',
+                english: 'Lip Gloss',
+                chinese: '唇蜜 / 唇彩',
+                pinyin: 'chúnmì / chúncǎi',
+                measureWord: '支 (zhī)',
+                sentence_en: 'Lip gloss gives your lips a shiny finish.',
+                sentence_ch: '唇彩给你的嘴唇带来闪亮的效果。',
+                imageUrl: 'images/makeup/lip_gloss.png',
+                notes: ''
+            },
+            {
+                category: 'Lips',
+                icon: '🖊️',
+                english: 'Lip Liner',
+                chinese: '唇笔 / 唇线笔',
+                pinyin: 'chúnbǐ / chúnxiàn bǐ',
+                measureWord: '支 (zhī)',
+                sentence_en: 'Use lip liner to define the shape of your lips.',
+                sentence_ch: '用唇线笔勾勒出你的唇形。',
+                imageUrl: 'images/makeup/lip_liner.png',
+                notes: ''
+            },
+            {
+                category: 'Lips',
+                icon: '🌿',
+                english: 'Lip Balm',
+                chinese: '润唇膏',
+                pinyin: 'rùnchún gāo',
+                measureWord: '支 (zhī)',
+                sentence_en: 'I always carry a lip balm in my pocket.',
+                sentence_ch: '我口袋里总是带着一支润唇膏。',
+                imageUrl: 'images/makeup/lip_balm.png',
+                notes: ''
+            },
+            {
+                category: 'Lips',
+                icon: '💧',
+                english: 'Lip Tint',
+                chinese: '唇釉',
+                pinyin: 'chún yòu',
+                measureWord: '支 (zhī)',
+                sentence_en: 'Lip tint offers a long-lasting, natural color.',
+                sentence_ch: '唇釉提供持久自然的颜色。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Lip+Tint',
+                notes: '“唇釉”是唇彩和口红的结合，通常比唇彩更显色，比口红更水润，且更持久。'
+            },
+            {
+                category: 'Tools',
+                icon: '🖌️',
+                english: 'Makeup Brush',
+                chinese: '化妆刷',
+                pinyin: 'huàzhuāng shuā',
+                measureWord: '支 (zhī)',
+                sentence_en: 'A clean makeup brush is important for good application.',
+                sentence_ch: '干净的化妆刷对于好的上妆很重要。',
+                imageUrl: 'images/makeup/makeup_brush.png',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                icon: '🧽',
+                english: 'Makeup Sponge',
+                chinese: '美妆蛋',
+                pinyin: 'měizhuāng dàn',
+                measureWord: '个 (gè)',
+                sentence_en: 'Dampen the makeup sponge before use.',
+                sentence_ch: '使用前请沾湿美妆蛋。',
+                imageUrl: 'images/makeup/makeup_sponge.png',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                icon: '🌀',
+                english: 'Eyelash Curler',
+                chinese: '睫毛夹',
+                pinyin: 'jiémáo jiá',
+                measureWord: '个 (gè)',
+                sentence_en: 'An eyelash curler can make your eyes look bigger.',
+                sentence_ch: '睫毛夹可以让你的眼睛看起来更大。',
+                imageUrl: 'images/makeup/eyelash_curler.png',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                icon: '🗑️',
+                english: 'Makeup Remover',
+                chinese: '卸妆水',
+                pinyin: 'xièzhuāng shuǐ',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Are you used to using a makeup remover water or lotion?',
+                sentence_ch: '你习惯用卸妆水还是卸妆乳？',
+                imageUrl: 'images/makeup/makeup_remover.png',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                icon: '👁️',
+                english: 'Eye Makeup Remover',
+                chinese: '眼部卸妆水',
+                pinyin: 'yǎnbù xièzhuāng shuǐ',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'It\'s best to use a specialized eye makeup remover when cleansing eyes.',
+                sentence_ch: '卸眼妆的时候，最好用专用的眼部卸妆水。',
+                imageUrl: 'images/makeup/eye_makeup_remover.png',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                icon: '🧼',
+                english: 'Facial Cleanser',
+                chinese: '洗面奶',
+                pinyin: 'xǐ miàn nǎi',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'This newly released facial cleanser is good; my skin feels hydrated and smooth after using it.',
+                sentence_ch: '新推出的这款洗面奶不错，清洗之后皮肤很润很滑。',
+                imageUrl: 'images/makeup/facial_cleanser.png',
+                notes: ''
+            },
+            {
+                category: 'Tools',
+                icon: '⚫',
+                english: 'Pore Cleanser',
+                chinese: '去黑头',
+                pinyin: 'qù hēi tóu',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Girls are often worried about choosing products for deep pore cleansing.',
+                sentence_ch: '女生们对于挑选去黑头的产品非常头疼。',
+                imageUrl: 'images/makeup/pore_cleanser.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Care',
+                icon: '🧴',
+                english: 'Face Cream',
+                chinese: '面霜',
+                pinyin: 'miàn shuāng',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Applying face cream is the most important step for skin protection before sleep.',
+                sentence_ch: '睡前涂面霜是保护皮肤最重要的步骤。',
+                imageUrl: 'images/makeup/face_cream.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Care',
+                icon: '🧖‍♀️',
+                english: 'Face Mask',
+                chinese: '面膜',
+                pinyin: 'miàn mó',
+                measureWord: '片 (piàn)',
+                sentence_en: 'After a face mask, your skin feels hydrated and refreshed.',
+                sentence_ch: '敷完面膜后，你的皮肤感觉水润清爽。',
+                imageUrl: 'images/makeup/face_mask.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Care',
+                icon: '💧',
+                english: 'Eye Cream',
+                chinese: '眼霜',
+                pinyin: 'yǎn shuāng',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'She applies eye cream every night to prevent wrinkles.',
+                sentence_ch: '她每天晚上都涂眼霜来预防皱纹。',
+                imageUrl: 'images/makeup/eye_cream.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Care',
+                icon: '✨',
+                english: 'Essence',
+                chinese: '精华液',
+                pinyin: 'jīnghuá yè',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'This essence helps to brighten and firm your skin.',
+                sentence_ch: '这款精华液有助于提亮和紧致你的皮肤。',
+                imageUrl: 'images/makeup/essence.png',
+                notes: '精华液通常是高度浓缩的护肤品，用于解决特定的皮肤问题，如抗衰老或美白。'
+            },
+            {
+                category: 'Skin Care',
+                icon: '🌸',
+                english: 'Toner',
+                chinese: '爽肤水',
+                pinyin: 'shuǎng fū shuǐ',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Apply toner after cleansing to prepare your skin for the next steps.',
+                sentence_ch: '洁面后使用爽肤水，为后续护肤做准备。',
+                imageUrl: 'images/makeup/toner.png',
+                notes: '“爽肤水”通常指洁面后使用的第一步护肤水，但在英文语境中，"toner"也可能指收敛水，用于收缩毛孔。'
+            },
+            {
+                category: 'Skin Care',
+                icon: '💦',
+                english: 'Lotion',
+                chinese: '乳液',
+                pinyin: 'rǔ yè',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Lotion is a lightweight moisturizer, great for summer.',
+                sentence_ch: '乳液是轻薄的保湿产品，非常适合夏天。',
+                imageUrl: 'images/makeup/lotion.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Care',
+                icon: '☀️',
+                english: 'Sun Cream',
+                chinese: '防晒',
+                pinyin: 'fáng shài',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Applying sun cream every day is crucial for protecting your skin.',
+                sentence_ch: '每天涂防晒对保护皮肤至关重要。',
+                imageUrl: 'images/makeup/sun_cream.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Care',
+                icon: '👋',
+                english: 'Hand Cream',
+                chinese: '护手霜',
+                pinyin: 'hù shǒu shuāng',
+                measureWord: '支 (zhī)',
+                sentence_en: 'Don\'t forget to use hand cream to keep your hands moisturized.',
+                sentence_ch: '别忘了用护手霜来保持手部滋润。',
+                imageUrl: 'images/makeup/hand_cream.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Care',
+                icon: '✨',
+                english: 'Exfoliator',
+                chinese: '去角质',
+                pinyin: 'qù jiǎo zhì',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'Exfoliating helps to remove dead skin cells.',
+                sentence_ch: '去角质有助于去除死皮细胞。',
+                imageUrl: 'images/makeup/exfoliator.png',
+                notes: ''
+            },
+             {
+                category: 'Skin Care',
+                icon: '💎',
+                english: 'Facial Care',
+                chinese: '脸部保养',
+                pinyin: 'liǎn bù bǎo yǎng',
+                measureWord: '(No common measure word)',
+                sentence_en: 'Facial care is important for healthy skin.',
+                sentence_ch: '脸部保养对健康的皮肤很重要。',
+                imageUrl: 'images/makeup/facial_care.png',
+                notes: ''
+            },
+             {
+                category: 'Skin Care',
+                icon: '👃',
+                english: 'Perfume',
+                chinese: '香水',
+                pinyin: 'xiāng shuǐ',
+                measureWord: '瓶 (píng)',
+                sentence_en: 'She bought a new bottle of perfume.',
+                sentence_ch: '她买了一瓶新香水。',
+                imageUrl: 'images/makeup/perfume.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Types',
+                icon: '🏜️',
+                english: 'Dry Skin',
+                chinese: '干性皮肤',
+                pinyin: 'gānxìng pífū',
+                measureWord: '(No common measure word)',
+                sentence_en: 'People with dry skin should use hydrating products.',
+                sentence_ch: '干性皮肤的人应该使用补水产品。',
+                imageUrl: 'images/makeup/dry_skin.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Types',
+                icon: '🛢️',
+                english: 'Oily Skin',
+                chinese: '油性皮肤',
+                pinyin: 'yóuxìng pífū',
+                measureWord: '(No common measure word)',
+                sentence_en: 'Oily skin is prone to breakouts.',
+                sentence_ch: '油性皮肤容易长痘痘。',
+                imageUrl: 'images/makeup/oily_skin.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Types',
+                icon: '🤕',
+                english: 'Sensitive Skin',
+                chinese: '敏感性皮肤',
+                pinyin: 'mǐngǎn xìng pífū',
+                measureWord: '(No common measure word)',
+                sentence_en: 'Sensitive skin can easily get irritated.',
+                sentence_ch: '敏感性皮肤很容易受到刺激。',
+                imageUrl: 'images/makeup/sensitive_skin.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Types',
+                icon: '🔄',
+                english: 'Combination Skin',
+                chinese: '混合性皮肤',
+                pinyin: 'hùnhé xìng pífū',
+                measureWord: '(No common measure word)',
+                sentence_en: 'Combination skin can be oily and dry at the same time.',
+                sentence_ch: '混合性皮肤可能同时是油性和干性的。',
+                imageUrl: 'images/makeup/combination_skin.png',
+                notes: ''
+            },
+            {
+                category: 'Skin Types',
+                icon: '🟤',
+                english: 'Complexion',
+                chinese: '肤色',
+                pinyin: 'fū sè',
+                measureWord: '(No common measure word)',
+                sentence_en: 'Her complexion is very fair.',
+                sentence_ch: '她的肤色很白皙。',
+                imageUrl: 'images/makeup/complexion.png',
+                notes: ''
+            },
+            {
+                category: 'Descriptive Words',
+                icon: '✨',
+                english: 'Shimmery',
+                chinese: '珠光',
+                pinyin: 'zhū guāng',
+                measureWord: '',
+                sentence_en: 'She loves shimmery eyeshadow for a party look.',
+                sentence_ch: '她喜欢用珠光眼影打造派对妆容。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Shimmer',
+                notes: '指带有细微闪光颗粒的妆效，让皮肤看起来更有光泽。'
+            },
+            {
+                category: 'Descriptive Words',
+                icon: '☁️',
+                english: 'Matte',
+                chinese: '哑光',
+                pinyin: 'yǎ guāng',
+                measureWord: '',
+                sentence_en: 'Matte lipstick gives a sophisticated, non-shiny finish.',
+                sentence_ch: '哑光口红能带来精致、无光泽的妆效。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Matte',
+                notes: '指没有光泽的妆效，通常能让妆容看起来更高级、持久。'
+            },
+            {
+                category: 'Descriptive Words',
+                icon: '⏳',
+                english: 'Long-lasting',
+                chinese: '持久',
+                pinyin: 'chí jiǔ',
+                measureWord: '',
+                sentence_en: 'This eyeliner is known for its long-lasting formula.',
+                sentence_ch: '这款眼线液以其持久配方而闻名。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Long-lasting',
+                notes: '形容妆效能保持很长时间，不易脱妆。'
+            },
+            {
+                category: 'Descriptive Words',
+                icon: '💧',
+                english: 'Hydrating',
+                chinese: '保湿',
+                pinyin: 'bǎo shī',
+                measureWord: '',
+                sentence_en: 'The hydrating foundation is perfect for dry skin.',
+                sentence_ch: '这款保湿粉底非常适合干性皮肤。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Hydrating',
+                notes: '指产品具有给皮肤补充水分的功能。'
+            },
+            {
+                category: 'Ingredients',
+                icon: '🔬',
+                english: 'Hyaluronic Acid',
+                chinese: '透明质酸',
+                pinyin: 'tòu míng zhì suān',
+                measureWord: '',
+                sentence_en: 'Hyaluronic acid is a key ingredient for skin hydration.',
+                sentence_ch: '透明质酸是皮肤补水的关键成分。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Hyaluronic+Acid',
+                notes: '也被称为玻尿酸，能吸收并锁住大量水分，是常见的保湿成分。'
+            },
+            {
+                category: 'Ingredients',
+                icon: '🧪',
+                english: 'Tretinoin (First-gen retinoid)',
+                chinese: '维甲酸 (第一代维A酸)',
+                pinyin: 'wéi jiǎ suān',
+                measureWord: '',
+                sentence_en: 'Tretinoin is a first-generation retinoid used for acne and pigmentation.',
+                sentence_ch: '维甲酸是第一代维A酸，用于治疗痤疮和色素沉着。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Tretinoin',
+                notes: '属于第一代维A酸，常用于治疗痤疮和色素沉着。'
+            },
+            {
+                category: 'Ingredients',
+                icon: '🧪',
+                english: 'Isotretinoin (Second-gen retinoid)',
+                chinese: '异维A酸 (第二代维A酸)',
+                pinyin: 'yì wéi A suān',
+                measureWord: '',
+                sentence_en: 'Isotretinoin is a potent retinoid for severe acne treatment.',
+                sentence_ch: '异维A酸是强效治疗严重痤疮的维A酸。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Isotretinoin',
+                notes: '属于第二代维A酸，通常用于治疗严重的囊肿型痤疮。'
+            },
+            {
+                category: 'Ingredients',
+                icon: '🧪',
+                english: 'Adapalene (Third-gen retinoid)',
+                chinese: '阿达帕林 (第三代维A酸)',
+                pinyin: 'ā dá pà lín',
+                measureWord: '',
+                sentence_en: 'Adapalene is a newer retinoid with fewer side effects.',
+                sentence_ch: '阿达帕林是新一代维A酸，副作用较低。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Adapalene',
+                notes: '属于第三代维A酸，刺激性较小，适合长期用于治疗轻中度痤疮。'
+            },
+            {
+                category: 'Ingredients',
+                icon: '🍊',
+                english: 'Vitamin C',
+                chinese: '维生素C',
+                pinyin: 'wéi shēng sù C',
+                measureWord: '',
+                sentence_en: 'Vitamin C is an antioxidant that brightens and repairs skin.',
+                sentence_ch: '维生素C具有抗氧化，美白和促进皮肤修复的功效。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Vitamin+C',
+                notes: '美白产品中常见成分，能抵抗自由基，提亮肤色。'
+            },
+            {
+                category: 'Ingredients',
+                icon: '🧪',
+                english: 'Retinol',
+                chinese: '视黄醇',
+                pinyin: 'shì huáng chún',
+                measureWord: '',
+                sentence_en: 'Retinol is a powerful anti-aging ingredient.',
+                sentence_ch: '视黄醇是一种强大的抗衰老成分。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Retinol',
+                notes: '维A醇的一种，常用于抗老、减少细纹和改善肤质。'
+            },
+            {
+                category: 'Ingredients',
+                icon: '💡',
+                english: 'Niacinamide',
+                chinese: '烟酰胺',
+                pinyin: 'yān xiān àn',
+                measureWord: '',
+                sentence_en: 'Niacinamide helps to brighten skin and reduce inflammation.',
+                sentence_ch: '烟酰胺有助于提亮肤色和减轻炎症。',
+                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Niacinamide',
+                notes: '维生素B3衍生物，是美白和抗炎产品中常见的成分。'
+            },
+        ];
+
+        const glossaryGrid = document.getElementById('glossary-grid');
+        const categoryTabsContainer = document.getElementById('category-tabs');
+        const searchBar = document.getElementById('search-bar');
+        
+        const allCategories = ['General', 'Facial Features', 'Face', 'Eyes', 'Lips', 'Tools', 'Skin Care', 'Skin Types', 'Descriptive Words', 'Ingredients'];
+        const categories = [...new Set(vocabulary.map(item => item.category))];
+        let currentCategory = 'General';
+
+        function renderGlossary(filter = '', category = currentCategory) {
+            glossaryGrid.innerHTML = '';
+            const filteredVocab = vocabulary.filter(item => {
+                const matchesCategory = item.category === category;
+                const matchesSearch = filter.toLowerCase() === '' ||
+                                     item.english.toLowerCase().includes(filter.toLowerCase()) ||
+                                     item.chinese.toLowerCase().includes(filter.toLowerCase()) ||
+                                     item.pinyin.toLowerCase().includes(filter.toLowerCase());
+
+                if (filter.trim()) {
+                    return matchesSearch;
+                } else {
+                    return matchesCategory && matchesSearch;
+                }
+            });
+
+            if (filteredVocab.length === 0) {
+                 glossaryGrid.innerHTML = `<p class="text-center text-gray-500 col-span-full">No terms found. Try a different category or search term.</p>`;
+                 return;
+            }
+
+            filteredVocab.forEach(item => {
+                const isSearching = filter.trim().length > 0;
+                const categoryTagHtml = isSearching ? `<span class="text-xs font-semibold px-2 py-1 bg-[#F8F4EC] text-[#635649] rounded-full self-start mb-2">${item.category}</span>` : '';
+                const notesHtml = item.notes ? `<p class="mt-2 text-xs text-gray-500 border-t border-gray-100 pt-2"><strong class="text-gray-600">小贴士：</strong> ${item.notes}</p>` : '';
+                
+                const card = document.createElement('div');
+                card.className = 'card rounded-xl p-6 shadow-sm flex flex-col gap-3';
+                card.innerHTML = `
+                    ${categoryTagHtml}
+                    <img src="${item.imageUrl}" alt="${item.english}" onerror="this.onerror=null; this.src='https://placehold.co/100x100/F8F4EC/635649?text=Image+Missing'; this.className='w-full h-24 rounded-lg mb-4 object-cover image-placeholder';" class="w-full h-auto rounded-lg mb-4 object-cover">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-[#635649]">${item.english}</h3>
+                        <span class="text-3xl">${item.icon}</span>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-semibold text-gray-700">${item.chinese}</p>
+                        <p class="text-lg text-[#A39B8B]">${item.pinyin}</p>
+                        ${item.measureWord ? `<p class="text-sm text-gray-500">Measure Word: <span class="text-[#635649] font-medium">${item.measureWord}</span></p>` : ''}
+                    </div>
+                    <div class="mt-2 pt-3 border-t border-gray-100 space-y-2 text-sm">
+                        <p class="text-gray-600">${item.sentence_en}</p>
+                        <p class="text-gray-600">${item.sentence_ch}</p>
+                    </div>
+                    ${notesHtml}
+                `;
+                glossaryGrid.appendChild(card);
+            });
+        }
+        
+        function renderCategoryTabs() {
+            allCategories.forEach(category => {
+                const tab = document.createElement('button');
+                tab.innerText = category;
+                tab.className = `category-tab py-2 px-4 rounded-lg transition-colors duration-200 text-sm md:text-base ${category === currentCategory ? 'active-tab' : 'inactive-tab'}`;
+                tab.dataset.category = category;
+                tab.addEventListener('click', () => {
+                    currentCategory = category;
+                    searchBar.value = '';
+                    document.querySelectorAll('.category-tab').forEach(t => {
+                        t.classList.remove('active-tab');
+                        t.classList.add('inactive-tab');
+                    });
+                    tab.classList.add('active-tab');
+                    tab.classList.remove('inactive-tab');
+                    renderGlossary();
+                });
+                categoryTabsContainer.appendChild(tab);
+            });
+        }
+
+        searchBar.addEventListener('keyup', () => {
+            const query = searchBar.value;
+            if (query.trim()) {
+                document.querySelectorAll('.category-tab').forEach(t => {
+                    t.classList.remove('active-tab');
+                    t.classList.add('inactive-tab');
+                });
+                renderGlossary(query, '');
+            } else {
+                 document.querySelector(`[data-category="${currentCategory}"]`).classList.add('active-tab');
+                 document.querySelector(`[data-category="${currentCategory}"]`).classList.remove('inactive-tab');
+                 renderGlossary('', currentCategory);
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategoryTabs();
+            renderGlossary();
+        });
+
+    </script>
+</body>
+</html>
