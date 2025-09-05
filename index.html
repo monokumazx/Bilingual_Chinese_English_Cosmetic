@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chosen Palette: Soft Glam -->
     <!-- Application Structure Plan: The application is structured as a single-page interactive glossary with category-based navigation (tabs for Facial Features, Face, Eyes, Lips, Tools, Skin) and a live search filter. This design was chosen to organize a potentially large vocabulary into manageable, thematic sections, preventing user overload. The primary user flow is selection- and search-driven filtering, allowing for both browsing by category and targeted lookup of specific terms. This is more intuitive for a learning tool than a simple linear list. -->
-    <!-- Visualization & Content Choices: The core content is a bilingual vocabulary list. Goal: Organize & Inform. Method: Each term is presented in a self-contained 'card' (HTML/Tailwind) displaying the term in English, Chinese (Hanzi), and Pinyin, along with parallel example sentences for context and a corresponding image for visual aid. Interaction: The primary interactions are category filtering via tabs and real-time text search, both powered by vanilla JavaScript. Justification: This card-based, filterable list is the most direct and effective way to present and explore glossary data without unnecessary complexity. No charts are needed as there is no quantitative data to visualize. -->
+    <!-- Visualization & Content Choices: The core content is a bilingual vocabulary list. Goal: Organize & Inform. Method: Each term is presented in a self-contained 'card' (HTML/Tailwind) displaying the term in English, Chinese (Hanzi), and Pinyin, along with parallel example sentences for context. Justification: This card-based, filterable list is the most direct and effective way to present and explore glossary data without unnecessary complexity. No charts are needed as there is no quantitative data to visualize. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -79,9 +79,8 @@
                 chinese: '化妆',
                 pinyin: 'huà zhuāng',
                 measureWord: '(No common measure word)',
-                sentence_en: 'She enjoys doing her makeup every morning.',
-                sentence_ch: '她喜欢每天早上化妆。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/makeup.png',
+                sentence_en: 'A general term for cosmetic products applied to the face to enhance or alter the appearance.',
+                sentence_ch: '一个用于描述涂抹在脸部以修饰或改变外貌的化妆品的通用术语。',
                 notes: ''
             },
             {
@@ -91,9 +90,8 @@
                 chinese: '脸',
                 pinyin: 'liǎn',
                 measureWord: '(No common measure word)',
-                sentence_en: 'She has a beautiful oval face.',
-                sentence_ch: '她有一张美丽的瓜子脸。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/face.png',
+                sentence_en: 'The front part of the head, from the forehead to the chin.',
+                sentence_ch: '头部的前部，从额头到下巴。',
                 notes: ''
             },
             {
@@ -103,9 +101,8 @@
                 chinese: '额头',
                 pinyin: 'é’tóu',
                 measureWord: '(No common measure word)',
-                sentence_en: 'He has a broad forehead.',
-                sentence_ch: '他额头很宽。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/forehead.png',
+                sentence_en: 'The part of the face above the eyebrows and below the hairline.',
+                sentence_ch: '眉毛之上、发际线之下的面部区域。',
                 notes: ''
             },
             {
@@ -115,9 +112,8 @@
                 chinese: '眉毛',
                 pinyin: 'méimáo',
                 measureWord: '根 (gēn) for a single hair',
-                sentence_en: 'She has perfectly shaped eyebrows.',
-                sentence_ch: '她的眉毛形状很完美。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eyebrows.png',
+                sentence_en: 'The arch of short hairs above each eye.',
+                sentence_ch: '每只眼睛上方的短毛弧线。',
                 notes: ''
             },
             {
@@ -127,9 +123,8 @@
                 chinese: '眼睛',
                 pinyin: 'yǎnjīng',
                 measureWord: '双 (shuāng)',
-                sentence_en: 'He has big, brown eyes.',
-                sentence_ch: '他有一双大大的棕色眼睛。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eye.png',
+                sentence_en: 'The organ of sight, located in a socket of the skull.',
+                sentence_ch: '位于头骨眼窝中的视觉器官。',
                 notes: ''
             },
             {
@@ -139,9 +134,8 @@
                 chinese: '睫毛',
                 pinyin: 'jiémáo',
                 measureWord: '根 (gēn)',
-                sentence_en: 'Her long eyelashes framed her eyes.',
-                sentence_ch: '她长长的睫毛衬托着她的眼睛。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eyelashes.png',
+                sentence_en: 'The short hairs growing from the edge of the eyelid.',
+                sentence_ch: '从眼睑边缘长出的短毛。',
                 notes: ''
             },
             {
@@ -151,9 +145,8 @@
                 chinese: '鼻子',
                 pinyin: 'bízi',
                 measureWord: '个 (gè)',
-                sentence_en: 'He has a straight nose.',
-                sentence_ch: '他有一个笔直的鼻子。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/nose.png',
+                sentence_en: 'The part of the face located above the mouth that contains the nostrils.',
+                sentence_ch: '位于嘴巴上方的面部器官，包含鼻孔。',
                 notes: ''
             },
             {
@@ -163,9 +156,8 @@
                 chinese: '脸颊',
                 pinyin: 'liǎnjiá',
                 measureWord: '个 (gè)',
-                sentence_en: 'She has rosy cheeks.',
-                sentence_ch: '她的脸颊红扑扑的。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/cheek.png',
+                sentence_en: 'The soft part of the face below the eye and on either side of the nose.',
+                sentence_ch: '眼睛下方、鼻子两侧的面部柔软部分。',
                 notes: ''
             },
             {
@@ -175,9 +167,8 @@
                 chinese: '唇',
                 pinyin: 'chún',
                 measureWord: '(No common measure word)',
-                sentence_en: 'She has full lips.',
-                sentence_ch: '她的嘴唇很丰满。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/lips.png',
+                sentence_en: 'The fleshy folds that form the opening of the mouth.',
+                sentence_ch: '形成嘴部开口的肉质褶皱。',
                 notes: ''
             },
             {
@@ -187,9 +178,8 @@
                 chinese: '下巴',
                 pinyin: 'xiàba',
                 measureWord: '个 (gè)',
-                sentence_en: 'He has a strong jaw and a defined chin.',
-                sentence_ch: '他下颚线很硬朗，下巴轮廓分明。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/chin.png',
+                sentence_en: 'The projecting part of the face below the mouth.',
+                sentence_ch: '嘴巴下方突出的面部部分。',
                 notes: ''
             },
             {
@@ -200,9 +190,8 @@
                 chinese: '妆前乳',
                 pinyin: 'zhuāngqián rǔ',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'A good primer creates a smooth canvas for makeup.',
-                sentence_ch: '好的妆前乳为化妆打造光滑的画布。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/primer.png',
+                sentence_en: 'A base makeup product applied before foundation to create a smooth surface and help makeup last longer.',
+                sentence_ch: '一种在粉底之前使用的底妆产品，用于打造光滑表面并延长妆容持久度。',
                 notes: ''
             },
             {
@@ -213,9 +202,8 @@
                 chinese: '粉底液',
                 pinyin: 'fěndǐ yè',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'She uses liquid foundation for light coverage.',
-                sentence_ch: '她使用粉底液来达到轻薄的遮盖效果。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/liquid_foundation.png',
+                sentence_en: 'A liquid cosmetic used to even out skin tone and create a uniform base for other makeup.',
+                sentence_ch: '一种用于均匀肤色、为其他化妆品打底的液态化妆品。',
                 notes: '和粉饼、BB霜不同，粉底液是液体质地，通常遮瑕力更好，是底妆的主力产品。'
             },
             {
@@ -226,9 +214,8 @@
                 chinese: '矿物粉底',
                 pinyin: 'kuàngwù fěndǐ',
                 measureWord: '盒 (hé)',
-                sentence_en: 'Mineral foundation is good for sensitive skin.',
-                sentence_ch: '矿物粉底对敏感性皮肤很好。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/mineral_foundation.png',
+                sentence_en: 'A foundation made from natural minerals, often in powder form, suitable for sensitive skin.',
+                sentence_ch: '一种由天然矿物质制成的粉底，通常为粉状，适合敏感皮肤。',
                 notes: '矿物粉底通常不含化学添加剂，对皮肤负担较小。'
             },
             {
@@ -239,9 +226,8 @@
                 chinese: '粉状粉底',
                 pinyin: 'fěn zhuàng fěndǐ',
                 measureWord: '盒 (hé)',
-                sentence_en: 'Powder foundation is ideal for oily skin.',
-                sentence_ch: '粉状粉底非常适合油性皮肤。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/powder_foundation.png',
+                sentence_en: 'A foundation in powder form that can be used for light coverage or to set liquid makeup.',
+                sentence_ch: '一种粉状形式的粉底，可用于轻薄遮盖或定妆。',
                 notes: ''
             },
             {
@@ -252,9 +238,8 @@
                 chinese: '粉饼',
                 pinyin: 'fěn bǐng',
                 measureWord: '块 (kuài)',
-                sentence_en: 'She carries pressed powder for quick touch-ups.',
-                sentence_ch: '她带着粉饼，以便快速补妆。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/face_powder_pressed_powder.png',
+                sentence_en: 'A compact powder used for setting foundation and reducing shine, often carried for touch-ups.',
+                sentence_ch: '一种紧凑型粉末，用于定妆和减少油光，通常便于携带以便快速补妆。',
                 notes: '粉饼通常用于定妆或补妆，遮瑕力不如粉底液。'
             },
             {
@@ -265,9 +250,8 @@
                 chinese: '散粉',
                 pinyin: 'sǎn fěn',
                 measureWord: '盒 (hé)',
-                sentence_en: 'Loose powder helps set the makeup.',
-                sentence_ch: '散粉有助于定妆。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/loose_powder.png',
+                sentence_en: 'A fine, non-compact powder used to absorb excess oil and set makeup for a long-lasting finish.',
+                sentence_ch: '一种细致、非紧凑型粉末，用于吸收多余油脂并定妆，使妆容持久。',
                 notes: '主要功能是吸附油脂、定妆，让妆容更持久。'
             },
             {
@@ -278,9 +262,8 @@
                 chinese: '遮瑕膏',
                 pinyin: 'zhēxiá gāo',
                 measureWord: '支 (zhī)',
-                sentence_en: 'Use concealer to cover blemishes.',
-                sentence_ch: '用遮瑕膏遮盖瑕疵。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/concealer.png',
+                sentence_en: 'A highly pigmented product used to cover dark circles, blemishes, or other imperfections.',
+                sentence_ch: '一种高遮盖力的产品，用于遮盖黑眼圈、瑕疵或其他不完美之处。',
                 notes: ''
             },
             {
@@ -291,9 +274,8 @@
                 chinese: '高光 / 高光粉',
                 pinyin: 'gāoguāng / gāoguāng fěn',
                 measureWord: '盒 (hé)',
-                sentence_en: 'Apply highlighter to the high points of your face.',
-                sentence_ch: '将高光涂在脸部高光处。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/highlighter.png',
+                sentence_en: 'A cosmetic product that catches the light to make areas of the face appear more prominent.',
+                sentence_ch: '一种能捕捉光线，使面部特定区域看起来更突出的化妆品。',
                 notes: ''
             },
             {
@@ -304,9 +286,8 @@
                 chinese: '古铜粉',
                 pinyin: 'gǔtóng fěn',
                 measureWord: '盒 (hé)',
-                sentence_en: 'He used bronzer to get a sunkissed look.',
-                sentence_ch: '他用古铜粉来打造阳光亲吻过的妆容。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/bronzer.png',
+                sentence_en: 'A powder or cream used to add warmth and a sun-kissed look to the skin.',
+                sentence_ch: '一种用于为皮肤增添暖色调和阳光亲吻感的粉末或膏体。',
                 notes: ''
             },
             {
@@ -317,9 +298,8 @@
                 chinese: '修容',
                 pinyin: 'xiū róng',
                 measureWord: '盒 (hé)',
-                sentence_en: 'She used contour to define her cheekbones.',
-                sentence_ch: '她用修容来修饰她的颧骨。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/contour.png',
+                sentence_en: 'A cosmetic product used to create shadows and define facial features like cheekbones and the jawline.',
+                sentence_ch: '一种用于打造阴影、修饰颧骨和下颚线等面部轮廓的化妆品。',
                 notes: ''
             },
             {
@@ -330,9 +310,8 @@
                 chinese: '腮红',
                 pinyin: 'sāihóng',
                 measureWord: '块 (kuài)',
-                sentence_en: 'A little blush adds a healthy glow.',
-                sentence_ch: '一点腮红增添健康的光彩。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/blush.png',
+                sentence_en: 'A cosmetic applied to the cheeks to give a rosy color and a healthy glow.',
+                sentence_ch: '一种涂抹在脸颊上，用于增添红润色泽和健康光彩的化妆品。',
                 notes: ''
             },
             {
@@ -343,9 +322,8 @@
                 chinese: '粉底',
                 pinyin: 'fěn dǐ',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Choosing the right foundation is key to a good makeup look.',
-                sentence_ch: '选择正确的粉底是打造完美妆容的关键。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/foundation.png',
+                sentence_en: 'A broad term for makeup products that create a base layer on the skin.',
+                sentence_ch: '一个用于创建皮肤基础妆层的化妆品的广义术语。',
                 notes: '“粉底”是一个总称，包含了粉底液、粉饼等多种形式。'
             },
             {
@@ -356,9 +334,8 @@
                 chinese: 'BB霜',
                 pinyin: 'BB shuāng',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'BB cream offers lighter coverage and a more natural look than foundation.',
-                sentence_ch: 'BB霜比粉底液的遮瑕力更轻薄，妆感更自然。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=BB+Cream',
+                sentence_en: 'A multi-purpose cosmetic that combines skincare, foundation, and sunscreen for a lighter, more natural look.',
+                sentence_ch: '一种结合了护肤、粉底和防晒的多功能化妆品，妆感更轻薄自然。',
                 notes: 'BB霜是"Blemish Balm"的简称，最初用于修护皮肤。现在它是一种集保湿、防晒、底妆于一体的简化产品，但遮瑕力通常不如粉底液。'
             },
             {
@@ -369,9 +346,8 @@
                 chinese: 'CC霜',
                 pinyin: 'CC shuāng',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'CC cream is used for color correction and evening out skin tone.',
-                sentence_ch: 'CC霜用于校正肤色和均匀肤色。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=CC+Cream',
+                sentence_en: 'A color-correcting cosmetic designed to reduce redness and even out skin tone.',
+                sentence_ch: '一种用于校正肤色、减少泛红并均匀肤色的化妆品。',
                 notes: 'CC霜是"Color Correcting"的简称，主要功能是均匀和提亮肤色，通常比BB霜更轻薄。'
             },
             {
@@ -382,9 +358,8 @@
                 chinese: '眼影',
                 pinyin: 'yǎnyǐng',
                 measureWord: '盘 (pán)',
-                sentence_en: 'She chose a shimmery eyeshadow for the party.',
-                sentence_ch: '她为派对选择了一款闪亮的眼影。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eyeshadow.png',
+                sentence_en: 'A cosmetic applied to the eyelids and under the eyebrows to add color and depth.',
+                sentence_ch: '一种用于涂抹在眼睑和眉毛下方，以增加色彩和深度的化妆品。',
                 notes: ''
             },
             {
@@ -395,9 +370,8 @@
                 chinese: '眼线',
                 pinyin: 'yǎnxiàn',
                 measureWord: '支 (zhī)',
-                sentence_en: 'She likes to wear a simple eyeliner line.',
-                sentence_ch: '她喜欢画一条简单的眼线。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eyeliner.png',
+                sentence_en: 'A cosmetic applied along the line of the upper and lower eyelids to define the eye.',
+                sentence_ch: '一种沿着上下眼睑线涂抹，以勾勒眼部轮廓的化妆品。',
                 notes: ''
             },
             {
@@ -408,9 +382,8 @@
                 chinese: '睫毛膏',
                 pinyin: 'jiémáo gāo',
                 measureWord: '支 (zhī)',
-                sentence_en: 'Waterproof mascara is great for rainy days.',
-                sentence_ch: '防水睫毛膏非常适合雨天。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/mascara.png',
+                sentence_en: 'A cosmetic used to darken, lengthen, and thicken the eyelashes.',
+                sentence_ch: '一种用于加深、加长和增密睫毛的化妆品。',
                 notes: ''
             },
             {
@@ -421,9 +394,8 @@
                 chinese: '眉笔',
                 pinyin: 'méibǐ',
                 measureWord: '支 (zhī)',
-                sentence_en: 'Use an eyebrow pencil to fill in sparse areas.',
-                sentence_ch: '用眉笔填补稀疏的区域。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eyebrow_pencil.png',
+                sentence_en: 'A pencil used to fill in, shape, and define the eyebrows.',
+                sentence_ch: '一种用于填补、塑形和勾勒眉毛的笔。',
                 notes: ''
             },
             {
@@ -434,9 +406,8 @@
                 chinese: '假睫毛',
                 pinyin: 'jiǎ jiémáo',
                 measureWord: '副 (fù)',
-                sentence_en: 'She carefully applied the false eyelashes.',
-                sentence_ch: '她小心翼翼地贴上了假睫毛。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/false_eyelashes.png',
+                sentence_en: 'Pre-made lashes that are glued to the eyelid to create a fuller lash look.',
+                sentence_ch: '一种预制好的睫毛，通过胶水粘贴在眼睑上，以营造更浓密的效果。',
                 notes: ''
             },
             {
@@ -447,9 +418,8 @@
                 chinese: '眼线液',
                 pinyin: 'yǎnxiàn yè',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'He drew a perfect wing with his liquid eyeliner.',
-                sentence_ch: '他用液体眼线笔画了一个完美的翅膀眼线。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/liquid_eyeliner.png',
+                sentence_en: 'An eyeliner in liquid form that creates a sharp, defined line on the eyelid.',
+                sentence_ch: '一种液态的眼线产品，可以在眼睑上画出清晰、分明的线条。',
                 notes: ''
             },
             {
@@ -460,9 +430,8 @@
                 chinese: '口红',
                 pinyin: 'kǒuhóng',
                 measureWord: '支 (zhī)',
-                sentence_en: 'She wore a bold red lipstick.',
-                sentence_ch: '她涂了大胆的红色口红。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/lipstick.png',
+                sentence_en: 'A cosmetic for coloring the lips, available in various colors and finishes.',
+                sentence_ch: '一种用于给嘴唇上色的化妆品，有多种颜色和质地。',
                 notes: ''
             },
             {
@@ -473,9 +442,8 @@
                 chinese: '唇蜜 / 唇彩',
                 pinyin: 'chúnmì / chúncǎi',
                 measureWord: '支 (zhī)',
-                sentence_en: 'Lip gloss gives your lips a shiny finish.',
-                sentence_ch: '唇彩给你的嘴唇带来闪亮的效果。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/lip_gloss.png',
+                sentence_en: 'A cosmetic applied to the lips to give them a glossy, shiny appearance.',
+                sentence_ch: '一种涂抹在嘴唇上，使其呈现光泽、闪亮效果的化妆品。',
                 notes: ''
             },
             {
@@ -486,9 +454,8 @@
                 chinese: '唇笔 / 唇线笔',
                 pinyin: 'chúnbǐ / chúnxiàn bǐ',
                 measureWord: '支 (zhī)',
-                sentence_en: 'Use lip liner to define the shape of your lips.',
-                sentence_ch: '用唇线笔勾勒出你的唇形。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/lip_liner.png',
+                sentence_en: 'A pencil used to outline and define the shape of the lips before applying lipstick or gloss.',
+                sentence_ch: '一种在涂口红或唇彩前，用于勾勒和描绘嘴唇形状的笔。',
                 notes: ''
             },
             {
@@ -499,9 +466,8 @@
                 chinese: '润唇膏',
                 pinyin: 'rùnchún gāo',
                 measureWord: '支 (zhī)',
-                sentence_en: 'I always carry a lip balm in my pocket.',
-                sentence_ch: '我口袋里总是带着一支润唇膏。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/lip_balm.png',
+                sentence_en: 'A wax-like substance applied to the lips to moisturize and relieve chapped or dry lips.',
+                sentence_ch: '一种涂抹在嘴唇上的蜡状物质，用于滋润和缓解干裂的嘴唇。',
                 notes: ''
             },
             {
@@ -512,9 +478,8 @@
                 chinese: '唇釉',
                 pinyin: 'chún yòu',
                 measureWord: '支 (zhī)',
-                sentence_en: 'Lip tint offers a long-lasting, natural color.',
-                sentence_ch: '唇釉提供持久自然的颜色。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Lip+Tint',
+                sentence_en: 'A liquid lip product that stains the lips for a long-lasting, natural color.',
+                sentence_ch: '一种能为嘴唇染色，以提供持久自然色彩的液态唇部产品。',
                 notes: '“唇釉”是唇彩和口红的结合，通常比唇彩更显色，比口红更水润，且更持久。'
             },
             {
@@ -525,9 +490,8 @@
                 chinese: '化妆刷',
                 pinyin: 'huàzhuāng shuā',
                 measureWord: '支 (zhī)',
-                sentence_en: 'A clean makeup brush is important for good application.',
-                sentence_ch: '干净的化妆刷对于好的上妆很重要。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/makeup_brush.png',
+                sentence_en: 'A tool with bristles used to apply and blend cosmetic products.',
+                sentence_ch: '一种带有刷毛的工具，用于涂抹和晕染化妆品。',
                 notes: ''
             },
             {
@@ -538,9 +502,8 @@
                 chinese: '美妆蛋',
                 pinyin: 'měizhuāng dàn',
                 measureWord: '个 (gè)',
-                sentence_en: 'Dampen the makeup sponge before use.',
-                sentence_ch: '使用前请沾湿美妆蛋。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/makeup_sponge.png',
+                sentence_en: 'A soft, porous sponge used to apply and blend liquid or cream products for a smooth finish.',
+                sentence_ch: '一种柔软、多孔的海绵，用于涂抹和晕染液体或膏状产品，以打造光滑妆效。',
                 notes: ''
             },
             {
@@ -551,9 +514,8 @@
                 chinese: '睫毛夹',
                 pinyin: 'jiémáo jiá',
                 measureWord: '个 (gè)',
-                sentence_en: 'An eyelash curler can make your eyes look bigger.',
-                sentence_ch: '睫毛夹可以让你的眼睛看起来更大。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eyelash_curler.png',
+                sentence_en: 'A tool used to curl the eyelashes, making them appear longer and more voluminous.',
+                sentence_ch: '一种用于夹卷睫毛的工具，可使睫毛看起来更长、更浓密。',
                 notes: ''
             },
             {
@@ -564,9 +526,8 @@
                 chinese: '卸妆水',
                 pinyin: 'xièzhuāng shuǐ',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Are you used to using a makeup remover water or lotion?',
-                sentence_ch: '你习惯用卸妆水还是卸妆乳？',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/makeup_remover.png',
+                sentence_en: 'A liquid or lotion used to remove makeup from the face.',
+                sentence_ch: '一种用于卸除面部彩妆的液体或乳液。',
                 notes: ''
             },
             {
@@ -577,9 +538,8 @@
                 chinese: '眼部卸妆水',
                 pinyin: 'yǎnbù xièzhuāng shuǐ',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'It\'s best to use a specialized eye makeup remover when cleansing eyes.',
-                sentence_ch: '卸眼妆的时候，最好用专用的眼部卸妆水。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eye_makeup_remover.png',
+                sentence_en: 'A specialized product for gently and effectively removing makeup from the delicate eye area.',
+                sentence_ch: '一种专门用于温和有效地卸除眼部娇嫩区域彩妆的产品。',
                 notes: ''
             },
             {
@@ -590,9 +550,8 @@
                 chinese: '洗面奶',
                 pinyin: 'xǐ miàn nǎi',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'This newly released facial cleanser is good; my skin feels hydrated and smooth after using it.',
-                sentence_ch: '新推出的这款洗面奶不错，清洗之后皮肤很润很滑。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/facial_cleanser.png',
+                sentence_en: 'A product used to clean the face and remove dirt, oil, and impurities.',
+                sentence_ch: '一种用于清洁面部、去除污垢、油脂和杂质的产品。',
                 notes: ''
             },
             {
@@ -603,9 +562,8 @@
                 chinese: '去黑头',
                 pinyin: 'qù hēi tóu',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Girls are often worried about choosing products for deep pore cleansing.',
-                sentence_ch: '女生们对于挑选去黑头的产品非常头疼。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/pore_cleanser.png',
+                sentence_en: 'A product designed to remove blackheads and deep clean pores.',
+                sentence_ch: '一种用于去除黑头并深层清洁毛孔的产品。',
                 notes: ''
             },
             {
@@ -615,9 +573,8 @@
                 chinese: '面霜',
                 pinyin: 'miàn shuāng',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Applying face cream is the most important step for skin protection before sleep.',
-                sentence_ch: '睡前涂面霜是保护皮肤最重要的步骤。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/face_cream.png',
+                sentence_en: 'A cosmetic cream applied to the face to moisturize and protect the skin.',
+                sentence_ch: '一种涂抹在面部以滋润和保护皮肤的膏状化妆品。',
                 notes: ''
             },
             {
@@ -627,9 +584,8 @@
                 chinese: '面膜',
                 pinyin: 'miàn mó',
                 measureWord: '片 (piàn)',
-                sentence_en: 'After a face mask, your skin feels hydrated and refreshed.',
-                sentence_ch: '敷完面膜后，你的皮肤感觉水润清爽。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/face_mask.png',
+                sentence_en: 'A concentrated cosmetic treatment applied to the face for a set period to hydrate or treat skin.',
+                sentence_ch: '一种在规定时间内涂抹于面部的浓缩化妆品，用于补水或护理皮肤。',
                 notes: ''
             },
             {
@@ -639,9 +595,8 @@
                 chinese: '眼霜',
                 pinyin: 'yǎn shuāng',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'She applies eye cream every night to prevent wrinkles.',
-                sentence_ch: '她每天晚上都涂眼霜来预防皱纹。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/eye_cream.png',
+                sentence_en: 'A delicate cream formulated specifically for the skin around the eyes.',
+                sentence_ch: '一种专门为眼部周围皮肤配制的精致乳霜。',
                 notes: ''
             },
             {
@@ -651,9 +606,8 @@
                 chinese: '精华液',
                 pinyin: 'jīnghuá yè',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'This essence helps to brighten and firm your skin.',
-                sentence_ch: '这款精华液有助于提亮和紧致你的皮肤。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/essence.png',
+                sentence_en: 'A highly concentrated skincare product with active ingredients for specific skin concerns.',
+                sentence_ch: '一种含有活性成分，用于解决特定皮肤问题的高度浓缩护肤品。',
                 notes: '精华液通常是高度浓缩的护肤品，用于解决特定的皮肤问题，如抗衰老或美白。'
             },
             {
@@ -663,9 +617,8 @@
                 chinese: '爽肤水',
                 pinyin: 'shuǎng fū shuǐ',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Apply toner after cleansing to prepare your skin for the next steps.',
-                sentence_ch: '洁面后使用爽肤水，为后续护肤做准备。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/toner.png',
+                sentence_en: 'A liquid skincare product used after cleansing to balance the skin\'s pH and prepare it for moisturizer.',
+                sentence_ch: '一种在洁面后使用的液态护肤品，用于平衡皮肤酸碱度，并为后续保湿做准备。',
                 notes: '“爽肤水”通常指洁面后使用的第一步护肤水，但在英文语境中，"toner"也可能指收敛水，用于收缩毛孔。'
             },
             {
@@ -675,9 +628,8 @@
                 chinese: '乳液',
                 pinyin: 'rǔ yè',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Lotion is a lightweight moisturizer, great for summer.',
-                sentence_ch: '乳液是轻薄的保湿产品，非常适合夏天。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/lotion.png',
+                sentence_en: 'A lightweight moisturizing product, typically a liquid or cream, used to hydrate the skin.',
+                sentence_ch: '一种轻薄的保湿产品，通常为液体或乳霜，用于滋润皮肤。',
                 notes: ''
             },
             {
@@ -687,9 +639,8 @@
                 chinese: '防晒',
                 pinyin: 'fáng shài',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Applying sun cream every day is crucial for protecting your skin.',
-                sentence_ch: '每天涂防晒对保护皮肤至关重要。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/sun_cream.png',
+                sentence_en: 'A product that protects the skin from harmful ultraviolet (UV) radiation from the sun.',
+                sentence_ch: '一种保护皮肤免受太阳有害紫外线辐射的产品。',
                 notes: ''
             },
             {
@@ -699,9 +650,8 @@
                 chinese: '护手霜',
                 pinyin: 'hù shǒu shuāng',
                 measureWord: '支 (zhī)',
-                sentence_en: 'Don\'t forget to use hand cream to keep your hands moisturized.',
-                sentence_ch: '别忘了用护手霜来保持手部滋润。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/hand_cream.png',
+                sentence_en: 'A moisturizing cream designed specifically for the hands.',
+                sentence_ch: '一种专为手部设计的保湿霜。',
                 notes: ''
             },
             {
@@ -711,9 +661,8 @@
                 chinese: '去角质',
                 pinyin: 'qù jiǎo zhì',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'Exfoliating helps to remove dead skin cells.',
-                sentence_ch: '去角质有助于去除死皮细胞。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/exfoliator.png',
+                sentence_en: 'A product or tool that removes dead skin cells from the surface of the skin.',
+                sentence_ch: '一种从皮肤表面去除死皮细胞的产品或工具。',
                 notes: ''
             },
              {
@@ -723,9 +672,8 @@
                 chinese: '脸部保养',
                 pinyin: 'liǎn bù bǎo yǎng',
                 measureWord: '(No common measure word)',
-                sentence_en: 'Facial care is important for healthy skin.',
-                sentence_ch: '脸部保养对健康的皮肤很重要。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/facial_care.png',
+                sentence_en: 'The general practice of maintaining the health and appearance of the skin on the face.',
+                sentence_ch: '维持面部皮肤健康和外观的综合实践。',
                 notes: ''
             },
              {
@@ -735,9 +683,8 @@
                 chinese: '香水',
                 pinyin: 'xiāng shuǐ',
                 measureWord: '瓶 (píng)',
-                sentence_en: 'She bought a new bottle of perfume.',
-                sentence_ch: '她买了一瓶新香水。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/perfume.png',
+                sentence_en: 'A liquid cosmetic product with a pleasant smell, applied to the body.',
+                sentence_ch: '一种具有宜人香味、涂抹在身上的液态化妆品。',
                 notes: ''
             },
             {
@@ -747,9 +694,8 @@
                 chinese: '干性皮肤',
                 pinyin: 'gānxìng pífū',
                 measureWord: '(No common measure word)',
-                sentence_en: 'People with dry skin should use hydrating products.',
-                sentence_ch: '干性皮肤的人应该使用补水产品。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/dry_skin.png',
+                sentence_en: 'A skin type that produces less sebum than normal skin and is often flaky or tight.',
+                sentence_ch: '一种皮脂分泌少于正常皮肤的类型，通常干燥紧绷或有脱屑。',
                 notes: ''
             },
             {
@@ -759,9 +705,8 @@
                 chinese: '油性皮肤',
                 pinyin: 'yóuxìng pífū',
                 measureWord: '(No common measure word)',
-                sentence_en: 'Oily skin is prone to breakouts.',
-                sentence_ch: '油性皮肤容易长痘痘。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/oily_skin.png',
+                sentence_en: 'A skin type characterized by excess sebum production, leading to a shiny appearance and a higher risk of blemishes.',
+                sentence_ch: '一种以皮脂分泌过多为特征的皮肤类型，导致面部油光，并有较高的长痘风险。',
                 notes: ''
             },
             {
@@ -771,9 +716,8 @@
                 chinese: '敏感性皮肤',
                 pinyin: 'mǐngǎn xìng pífū',
                 measureWord: '(No common measure word)',
-                sentence_en: 'Sensitive skin can easily get irritated.',
-                sentence_ch: '敏感性皮肤很容易受到刺激。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/sensitive_skin.png',
+                sentence_en: 'A skin type that is easily irritated by cosmetic products and environmental factors.',
+                sentence_ch: '一种容易受到化妆品和环境因素刺激的皮肤类型。',
                 notes: ''
             },
             {
@@ -783,9 +727,8 @@
                 chinese: '混合性皮肤',
                 pinyin: 'hùnhé xìng pífū',
                 measureWord: '(No common measure word)',
-                sentence_en: 'Combination skin can be oily and dry at the same time.',
-                sentence_ch: '混合性皮肤可能同时是油性和干性的。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/combination_skin.png',
+                sentence_en: 'A skin type with both dry and oily areas, commonly with an oily T-zone (forehead, nose, and chin).',
+                sentence_ch: '一种同时具有干燥和油性区域的皮肤类型，通常T区（额头、鼻子和下巴）较油。',
                 notes: ''
             },
             {
@@ -795,9 +738,8 @@
                 chinese: '肤色',
                 pinyin: 'fū sè',
                 measureWord: '(No common measure word)',
-                sentence_en: 'Her complexion is very fair.',
-                sentence_ch: '她的肤色很白皙。',
-                imageUrl: 'Bilingual_Chinese_English_Cosmetic/images/complexion.png',
+                sentence_en: 'The natural color, texture, and appearance of the skin, especially on the face.',
+                sentence_ch: '皮肤，尤其是面部皮肤的自然颜色、质地和外观。',
                 notes: ''
             },
             {
@@ -807,9 +749,8 @@
                 chinese: '珠光',
                 pinyin: 'zhū guāng',
                 measureWord: '',
-                sentence_en: 'She loves shimmery eyeshadow for a party look.',
-                sentence_ch: '她喜欢用珠光眼影打造派对妆容。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Shimmer',
+                sentence_en: 'A cosmetic finish that contains fine, light-reflecting particles, giving a subtle glow.',
+                sentence_ch: '一种含有细小反光颗粒的妆效，能带来微妙的光泽。',
                 notes: '指带有细微闪光颗粒的妆效，让皮肤看起来更有光泽。'
             },
             {
@@ -819,9 +760,8 @@
                 chinese: '哑光',
                 pinyin: 'yǎ guāng',
                 measureWord: '',
-                sentence_en: 'Matte lipstick gives a sophisticated, non-shiny finish.',
-                sentence_ch: '哑光口红能带来精致、无光泽的妆效。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Matte',
+                sentence_en: 'A non-shiny, flat finish that absorbs light rather than reflecting it.',
+                sentence_ch: '一种不具光泽、平整的妆效，可以吸收光线而不是反射光线。',
                 notes: '指没有光泽的妆效，通常能让妆容看起来更高级、持久。'
             },
             {
@@ -831,9 +771,8 @@
                 chinese: '持久',
                 pinyin: 'chí jiǔ',
                 measureWord: '',
-                sentence_en: 'This eyeliner is known for its long-lasting formula.',
-                sentence_ch: '这款眼线液以其持久配方而闻名。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Long-lasting',
+                sentence_en: 'Describes a product that remains intact on the skin for an extended period without fading or smudging.',
+                sentence_ch: '描述一种能在皮肤上保持长时间不变、不褪色或不晕染的产品。',
                 notes: '形容妆效能保持很长时间，不易脱妆。'
             },
             {
@@ -843,9 +782,8 @@
                 chinese: '保湿',
                 pinyin: 'bǎo shī',
                 measureWord: '',
-                sentence_en: 'The hydrating foundation is perfect for dry skin.',
-                sentence_ch: '这款保湿粉底非常适合干性皮肤。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Hydrating',
+                sentence_en: 'Describes a product that provides and retains moisture in the skin.',
+                sentence_ch: '描述一种能为皮肤提供并锁住水分的产品。',
                 notes: '指产品具有给皮肤补充水分的功能。'
             },
             {
@@ -855,9 +793,8 @@
                 chinese: '透明质酸',
                 pinyin: 'tòu míng zhì suān',
                 measureWord: '',
-                sentence_en: 'Hyaluronic acid is a key ingredient for skin hydration.',
-                sentence_ch: '透明质酸是皮肤补水的关键成分。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Hyaluronic+Acid',
+                sentence_en: 'A molecule found naturally in the body that can hold a large amount of water, used for its hydrating properties in skincare.',
+                sentence_ch: '一种天然存在于体内的分子，能锁住大量水分，因其保湿特性被用于护肤品中。',
                 notes: '也被称为玻尿酸，能吸收并锁住大量水分，是常见的保湿成分。'
             },
             {
@@ -867,9 +804,8 @@
                 chinese: '维甲酸 (第一代维A酸)',
                 pinyin: 'wéi jiǎ suān',
                 measureWord: '',
-                sentence_en: 'Tretinoin is a first-generation retinoid used for acne and pigmentation.',
-                sentence_ch: '维甲酸是第一代维A酸，用于治疗痤疮和色素沉着。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Tretinoin',
+                sentence_en: 'A prescription-only retinoid (vitamin A derivative) used to treat acne and pigmentation issues.',
+                sentence_ch: '一种仅限处方使用的维A酸类药物，用于治疗痤疮和色素沉着问题。',
                 notes: '属于第一代维A酸，常用于治疗痤疮和色素沉着。'
             },
             {
@@ -879,9 +815,8 @@
                 chinese: '异维A酸 (第二代维A酸)',
                 pinyin: 'yì wéi A suān',
                 measureWord: '',
-                sentence_en: 'Isotretinoin is a potent retinoid for severe acne treatment.',
-                sentence_ch: '异维A酸是强效治疗严重痤疮的维A酸。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Isotretinoin',
+                sentence_en: 'A powerful oral retinoid medication used for severe, nodular acne that does not respond to other treatments.',
+                sentence_ch: '一种用于治疗对其他疗法无反应的严重囊肿型痤疮的强效口服维A酸药物。',
                 notes: '属于第二代维A酸，通常用于治疗严重的囊肿型痤疮。'
             },
             {
@@ -891,9 +826,8 @@
                 chinese: '阿达帕林 (第三代维A酸)',
                 pinyin: 'ā dá pà lín',
                 measureWord: '',
-                sentence_en: 'Adapalene is a newer retinoid with fewer side effects.',
-                sentence_ch: '阿达帕林是新一代维A酸，副作用较低。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Adapalene',
+                sentence_en: 'A topical retinoid known for its stability and effectiveness in treating acne with fewer side effects than other retinoids.',
+                sentence_ch: '一种局部外用维A酸，以其稳定性和治疗痤疮的有效性而闻名，副作用比其他维A酸更少。',
                 notes: '属于第三代维A酸，刺激性较小，适合长期用于治疗轻中度痤疮。'
             },
             {
@@ -903,9 +837,8 @@
                 chinese: '维生素C',
                 pinyin: 'wéi shēng sù C',
                 measureWord: '',
-                sentence_en: 'Vitamin C is an antioxidant that brightens and repairs skin.',
-                sentence_ch: '维生素C具有抗氧化，美白和促进皮肤修复的功效。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Vitamin+C',
+                sentence_en: 'An antioxidant that protects skin from damage, brightens complexion, and helps in collagen synthesis.',
+                sentence_ch: '一种抗氧化剂，可保护皮肤免受损伤、提亮肤色并帮助合成胶原蛋白。',
                 notes: '美白产品中常见成分，能抵抗自由基，提亮肤色。'
             },
             {
@@ -915,9 +848,8 @@
                 chinese: '视黄醇',
                 pinyin: 'shì huáng chún',
                 measureWord: '',
-                sentence_en: 'Retinol is a powerful anti-aging ingredient.',
-                sentence_ch: '视黄醇是一种强大的抗衰老成分。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Retinol',
+                sentence_en: 'A type of retinoid (vitamin A derivative) used in skincare to reduce fine lines, wrinkles, and improve skin texture.',
+                sentence_ch: '一种维A酸类化合物，用于护肤品中以减少细纹、皱纹和改善皮肤质地。',
                 notes: '维A醇的一种，常用于抗老、减少细纹和改善肤质。'
             },
             {
@@ -927,9 +859,8 @@
                 chinese: '烟酰胺',
                 pinyin: 'yān xiān àn',
                 measureWord: '',
-                sentence_en: 'Niacinamide helps to brighten skin and reduce inflammation.',
-                sentence_ch: '烟酰胺有助于提亮肤色和减轻炎症。',
-                imageUrl: 'https://placehold.co/100x100/F8F4EC/635649?text=Niacinamide',
+                sentence_en: 'A form of vitamin B3 that helps improve skin tone and texture, reduce redness, and strengthen the skin barrier.',
+                sentence_ch: '一种维生素B3，有助于改善肤色和质地、减少泛红并强化皮肤屏障。',
                 notes: '维生素B3衍生物，是美白和抗炎产品中常见的成分。'
             },
         ];
@@ -985,16 +916,10 @@
                 const categoryTagHtml = isSearching ? `<span class="text-xs font-semibold px-2 py-1 bg-[#F8F4EC] text-[#635649] rounded-full self-start mb-2">${item.category}</span>` : '';
                 const notesHtml = item.notes ? `<p class="mt-2 text-xs text-gray-500 border-t border-gray-100 pt-2"><strong class="text-gray-600">小贴士：</strong> ${item.notes}</p>` : '';
                 
-                let imageHtml = '';
-                if (item.category !== 'Facial Features' && item.imageUrl) {
-                     imageHtml = `<img src="${item.imageUrl}" alt="${item.english}" onerror="this.onerror=null; this.src='https://placehold.co/100x100/F8F4EC/635649?text=Image+Missing'; this.className='w-full h-auto rounded-lg mb-4 object-cover';" class="w-full h-auto rounded-lg mb-4 object-cover">`;
-                }
-
                 const card = document.createElement('div');
                 card.className = 'card rounded-xl p-6 shadow-sm flex flex-col gap-3';
                 card.innerHTML = `
                     ${categoryTagHtml}
-                    ${imageHtml}
                     <div class="flex items-center justify-between">
                         <h3 class="text-xl font-bold text-[#635649]">${item.english}</h3>
                         <span class="text-3xl">${item.icon}</span>
